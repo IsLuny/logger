@@ -1,0 +1,19 @@
+{
+  "name": "@sypos/logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "typings": "index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.19",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}
