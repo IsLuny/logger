@@ -4,9 +4,7 @@ import { Optional } from "./src/utils/typing"
 
 type LoggerLogFunction = (message: unknown, more?: { details?: string | object, tags?: string | string[], depth?: number }) => void
 
-type LoggerMethods<T extends string> = Record<T, LoggerLogFunction>
-
-const Resource: new <T extends string>(attr: LoggerConfig<T>) => Logger & LoggerMethods<T> = Logger as any
+type LoggerInstance = new <T extends string>(attr: LoggerConfig<T>) => Logger & Record<T, LoggerLogFunction>
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug'
 
@@ -43,6 +41,9 @@ export interface LoggerConfig<T extends string> {
 	format?: Optional<LoggerFormatOptions, 'function' | 'colorize'>
 }
 
-declare namespace IsLunyLogger {
-    export const createLogger = <T extends string>(config: LoggerConfig<T>) => Resource<T>
+export const createLogger: <T extends string>(config: LoggerConfig<T>) => LoggerInstance<T>
+export class Logger {
+	levels: LoggerLevelsConfig
+	formatOptions: LoggerFormatOptions
+	debugActived: boolean
 }
