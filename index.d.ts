@@ -1,4 +1,3 @@
-import { Logger } from "./src"
 import { ColorHexComplex } from "./src/utils/color-utils"
 import { Optional } from "./src/utils/typing"
 
@@ -41,9 +40,9 @@ export interface LoggerConfig<T extends string> {
 	format?: Optional<LoggerFormatOptions, 'function' | 'colorize'>
 }
 
-export const createLogger: <T extends string>(config: LoggerConfig<T>) => LoggerInstance<T>
 export class Logger {
 	levels: LoggerLevelsConfig
 	formatOptions: LoggerFormatOptions
 	debugActived: boolean
 }
+export const createLogger: <T extends string>(config: LoggerConfig<T>) => Logger & Record<T, LoggerLogFunction>
